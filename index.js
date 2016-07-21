@@ -19,10 +19,11 @@ const RawSource = require("webpack-core/lib/RawSource");
 
 
 
-class CacheUglifyJsWebpackPlugin{
+class CacheUglifyJsPlugin{
     constructor(options){
         this.options = merge({
-            cacheDirectory: os.tmpdir() //缓存目录  默认为系统的临时目录
+            cacheDirectory: os.tmpdir(), //缓存目录  默认为系统的临时目录
+            test: /\.jsx?$/
         },options);
     }
 
@@ -76,6 +77,10 @@ class CacheUglifyJsWebpackPlugin{
                     chunk.files.forEach(function(file) {
                         files.push(file);
                     });
+                });
+
+                files = files.filter((item)=>{
+                    return options.test.test(item);
                 });
 
                 files.forEach((file)=>{
@@ -177,4 +182,4 @@ class CacheUglifyJsWebpackPlugin{
 }
 
 
-module.exports = CacheUglifyJsWebpackPlugin;
+module.exports = CacheUglifyJsPlugin;

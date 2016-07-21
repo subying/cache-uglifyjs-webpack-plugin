@@ -11,7 +11,10 @@ npm install cache-uglifyjs-webpack-plugin
 var CacheUglifyjsWebpackPlugin = require('cache-uglifyjs-webpack-plugin');
 //cacheDirectory 为缓存目录  其他设置参考ugfily-js
 var cacheJsPlugin = new CacheUglifyjsWebpackPlugin({
-    cacheDirectory: './',//缓存目录
+    cacheDirectory: '../temp',//缓存目录
+    compress: {
+        warnings: false
+    }
 });
 
 
